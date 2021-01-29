@@ -7,7 +7,7 @@ public class MediaMultiplosTres
 	public static void main(String[] args) 
 	{
 		/*
-		 	Escrever um programa que receba vários números inteiros no teclado.
+		 	6- Escrever um programa que receba vários números inteiros no teclado.
 		 	E no final imprimir a média dos números múltiplos de 3.
 		 	Para sair digitar 0(zero).(DO...WHILE)
 		 */
@@ -27,7 +27,7 @@ public class MediaMultiplosTres
 		while(num!=0);
 		if(cont == 0)
 		{
-			System.out.println("Nenhum numero digitado é multiplos de 3, média = 0");
+			System.out.println("Nenhum numero digitado é multiplos de 3, não foi pssivel calcular a média");
 		}
 		else 
 		{
