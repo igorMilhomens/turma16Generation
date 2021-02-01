@@ -17,10 +17,8 @@ public class ChocoByte
 		int opcao;
 		char c ='%';
 		
-		do
-		{
-			//REPETIR
-			
+		do //REPETIR
+		{		
 			double valorTotal = 0.0;
 			int carrinho[] = new int[10];		
 			int  unidade = 0, sexo = 0, cod, cont = 0;
@@ -32,7 +30,7 @@ public class ChocoByte
 			System.out.print("Digite seu nome: ");
 			nome = scan.next();
 			
-			System.out.print("Qual dua identificação sexual(1-feminino / 2-masculino / 3-Outros): ");
+			System.out.print("Qual sua identificação sexual(1-feminino / 2-masculino / 3-Outros): ");
 			sexo = scan.nextInt();
 			
 			if(sexo == 1)
@@ -50,11 +48,10 @@ public class ChocoByte
 			
 			System.out.println("-------------------------------------------------------------------------------------");
 			
-			
 			//TELA DE INICIO
 			System.out.printf("Bem vindo ao ChocoByte %s %s.\n", genero, nome);
 			
-			do 
+			do //repete se a pessoa quer comprar outro produto
 			{
 				System.out.println("\nProdutos disponíveis: \nCód: \tEstoque:\tPreço:\t\tSabores: ");
 				
@@ -64,106 +61,101 @@ public class ChocoByte
 				}
 				
 				System.out.print("\nEscolha o cod do produto desejado: ");
-				do 
+				
+				do //verifica se é possivel realizar compra do item / estoque diferente de zero
 				{
 					continua = false;
 					
 					cod = scan.nextInt();
 					
-					if(estoque[cod-1]==0)
+					if(estoque[cod-1]== 0)
 					{
 						continua = true;
 						System.out.print("Produto ESGOTADO, selecione outro cod: ");
-						
 					}	
 				}
-				while(continua);
-				
-				
+				while(continua);	
 				
 				if(carrinho[cod-1] != 0) //Cod existente, carrinho com unidade
 				{
 					System.out.printf("Você ja possui ChocoByte %s no carrinho, deseja:(1-Acrescentar / 2- Retirar) produtos? : ", sabores[cod -1]);
 					opcao = scan.nextInt();
 					
-						if(opcao == 1)
+					if(opcao == 1)
+					{						
+						System.out.printf("Quantas unidades de ChocoByte %s deseja acrescentar ao carrinho? : ", sabores[cod -1]);
+						unidade = scan.nextInt();
+						
+						do
 						{
-													
-							System.out.printf("Quantas unidades de ChocoByte %s deseja acrescentar ao carrinho? : ", sabores[cod -1]);
-							unidade = scan.nextInt();
-							
-							do
+							if((unidade+carrinho[cod-1])<= estoque[cod-1])
 							{
-								if((unidade+carrinho[cod-1])<= estoque[cod-1])
-								{
-									carrinho[cod-1] += unidade;
-									System.out.print("Produto adicionado ao carrinho.\nDeseja: (1 - Selecionar Novo Produto / 2- Finalizar compra)? :");
-									opcao = scan.nextInt();	
-									continua = false;
-								}
-								else 
-								{
-									System.out.printf("Ação Inválida. Quantidade Disponivel: %d \ndigite a quantidade desejada: ", (estoque[cod -1]-carrinho[cod-1]));
-									unidade = scan.nextInt();
-									continua = true;
-								}
+								carrinho[cod-1] += unidade;
+								System.out.print("Produto adicionado ao carrinho.\nDeseja: (1 - Selecionar Novo Produto / 2- Finalizar compra)? :");
+								opcao = scan.nextInt();	
+								continua = false;
 							}
-							while(continua);
-							
+							else 
+							{
+								System.out.printf("Ação Inválida. Quantidade Disponivel: %d \ndigite a quantidade desejada: ", (estoque[cod -1]-carrinho[cod-1]));
+								unidade = scan.nextInt();
+								continua = true;
+							}
 						}
-						else if(opcao == 2)
+						while(continua);
+						
+					}
+					else if(opcao == 2)
+					{
+						System.out.printf("Quantas unidades de ChocoByte %s deseja retirar do carrinho? : ", sabores[cod -1]);
+						unidade = scan.nextInt();
+						
+						do
 						{
-							System.out.printf("Quantas unidades de ChocoByte %s deseja retirar do carrinho? : ", sabores[cod -1]);
-							unidade = scan.nextInt();
-							
-							do
+							if(carrinho[cod-1] >= unidade)
 							{
-								if(carrinho[cod-1] >= unidade)
-								{
-									carrinho[cod-1] -= unidade;
-									System.out.print("Produto retirado do carrinho.\nDeseja: (1 - Selecionar Novo Produto / 2- Finalizar compra)? :");
-									opcao = scan.nextInt();	
-									continua = false;
-								}
-								else 
-								{
-									System.out.printf("Ação Inválida. Quantidade Disponivelpara retirada: %d \ndigite a quantidade desejada: ", (carrinho[cod-1]));
-									unidade = scan.nextInt();
-									continua = true;
-								}
+								carrinho[cod-1] -= unidade;
+								System.out.print("Produto retirado do carrinho.\nDeseja: (1 - Selecionar Novo Produto / 2- Finalizar compra)? :");
+								opcao = scan.nextInt();	
+								continua = false;
 							}
-							while(continua);
+							else 
+							{
+								System.out.printf("Ação Inválida. Quantidade Disponivel para retirada: %d \nDigite a quantidade desejada: ", (carrinho[cod-1]));
+								unidade = scan.nextInt();
+								continua = true;
+							}
+						}
+						while(continua);
+					}
+					else
+					{
+						System.out.println("Opção Inválida\nDeseja continuar? [1-SIM / 2-NÃO");
+						opcao = scan.nextInt();
+					}
+				}
+				else     //	Primeira compra
+				{	
+					System.out.printf("Quantas unidades de ChocoByte %s deseja comprar? : ", sabores[cod -1]);
+					unidade = scan.nextInt();
+					do
+					{
+						if(unidade <= estoque[cod-1])
+						{
+							continua = false;
+							carrinho[cod-1] = unidade;	
 						}
 						else
 						{
-							System.out.println("Opção Inválida\nDeseja continuar? [1-SIM / 2-NÃO");
-							opcao = scan.nextInt();
+							System.out.printf("Ação Inválida. Quantidade Disponivel: %d \nDigite a quantidade desejada: ", estoque[cod -1]);
+							unidade = scan.nextInt();
+							continua = true;
 						}
+				
+					}while(continua);
 					
-				}
-				else     //	Primeira compra
-				{
-						
-						System.out.printf("Quantas unidades de ChocoByte %s deseja comprar? : ", sabores[cod -1]);
-						unidade = scan.nextInt();
-						do
-						{
-							if(unidade <= estoque[cod-1])
-							{
-								continua = false;
-								carrinho[cod-1] = unidade;
-								
-							}
-							else
-							{
-								System.out.printf("Ação Inválida. Quantidade Disponivel: %d \ndigite a quantidade desejada: ", estoque[cod -1]);
-								unidade = scan.nextInt();
-							}
-					
-						}while(continua);
-						
-						System.out.print("Produto adicionado ao carrinho.\nDeseja: (1 - Selecionar Novo Produto / 2- Finalizar compra)? :");
-						opcao = scan.nextInt();
+					System.out.print("Produto adicionado ao carrinho.\nDeseja: (1 - Selecionar Novo Produto / 2- Finalizar compra)? :");
+					opcao = scan.nextInt();
 				}
 				
 			}while(opcao == 1);
@@ -186,14 +178,12 @@ public class ChocoByte
 			System.out.printf("\n\n[VALOR FINAL]                                   R$%.2f\n", valorTotal  );
 			System.out.println("-------------------------------------------------------------------------------------");
 			System.out.println("OPÇÕES DE PAGAMENTO:\n" );
-			
 			System.out.printf("1 - A VISTA    - 10%c DESCONTO     - \tR$ %.2f\n", c, (valorTotal * 0.9));
 			System.out.printf("2 - CREDITO 1X - SEM DESCONTO     - \tR$ %.2f\n", (valorTotal));
 			System.out.printf("3 - CREDITO 2X - 10%c JUROS        - \tR$ %.2f\n", c, (valorTotal * 1.1));
 			System.out.printf("4 - CREDITO 3X - 15%c JUROS        - \tR$ %.2f\n", c, (valorTotal * 1.15));
-			
-			
 			System.out.print("\nSelecione uma Opção de Pagamento [1-4]: ");
+			
 			opcao = scan.nextInt();
 			
 			System.out.println("-------------------------------------------------------------------------------------");
@@ -214,6 +204,7 @@ public class ChocoByte
 					 System.out.printf("\nChocobyte %s\t%d uni.\t\t\tR$%.2f", sabores[i],(carrinho[i]),(pagamento[i]) );
 				}
 			}
+			
 			System.out.println("\n-------------------------------------------------------------------------------------");
 			
 			if(opcao == 1) 
@@ -245,16 +236,20 @@ public class ChocoByte
 			{
 				cont += estoque[i];
 			}
+			
 			if(cont == 0)
 			{
+				System.out.println("\n-------------------------------------------------------------------------------------");
 				System.out.println("Realizado a reposição do estoque!");
+				System.out.println("-------------------------------------------------------------------------------------");
+				
 				for(int i = 0; i<10;i++)
 				{
 					 estoque[i]= 10;
 				}
 			}
 		}
-		while(opcao == 1);
-			
+		while(opcao == 1);	
+		scan.close();
 	}
 }
