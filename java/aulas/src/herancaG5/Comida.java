@@ -2,11 +2,9 @@ package herancaG5;
 
 public class Comida {
 	
-	public String nome;
-	public String sabor;
-	public boolean temperaturaQuente;
-	
-	
+	private String nome;
+	private String sabor;
+	private boolean temperaturaQuente;
 	
 	public Comida(String nome, String sabor) {
 		super();
@@ -14,16 +12,37 @@ public class Comida {
 		this.sabor = sabor;
 	}
 
-	public void quente()
-	{
+	public void quente(){
 		this.temperaturaQuente = true;
-		System.out.println("Esquentando Comida");
+		System.out.printf("%s está quente.\n\n",this.nome);
 	}
 	
-	public void frio()
-	{
+	public void frio(){	
 		this.temperaturaQuente = false;
-		System.out.println("A comida esfriou.");
+		System.out.printf("%s esfriou.\n\n",this.nome);
 	}
-	
+
+	public String getNome() {
+		return nome;
+	}
+
+	public void setNome(String nome) {
+		this.nome = nome;
+	}
+
+	public String getSabor() {
+		return sabor;
+	}
+
+	public void setSabor(String sabor) {
+		this.sabor = sabor;
+	}
+
+	public boolean isTemperaturaQuente() {
+		return temperaturaQuente;
+	}
+
+	public void setTemperaturaQuente(boolean temperaturaQuente) {
+		this.temperaturaQuente = temperaturaQuente;
+	}	
 }

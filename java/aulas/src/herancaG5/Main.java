@@ -4,13 +4,27 @@ public class Main {
 
 	public static void main(String[] args) {
 
-		Bolo bolo1 = new Bolo("chocolate","Doce",6);
-		Pizza pizza1 = new Pizza("Franfo c/ Catupiry","Salgada",'M');
+		Bolo bolo1 = new Bolo("Bolo de Chocolate","Doce",2);
+		Pizza pizza1 = new Pizza("Pizza Franfo c/ Catupiry","Salgada",3);
 		
-		bolo1.quente();
+		System.out.println( bolo1.getNome() );
+		bolo1.frio();
+		bolo1.setNome("Bolo de Morango");
+		bolo1.frio();
+		
+		bolo1.retiraPedaco();
+		bolo1.retiraPedaco();
 		bolo1.retiraPedaco();
 		
-
+		System.out.println( bolo1.getNome());
+		bolo1.quente();
+		bolo1.setNome("Pizza Portuguesa");
+		bolo1.quente();
+		
+		pizza1.retiraFatia();
+		pizza1.retiraFatia();
+		pizza1.retiraFatia();
+		pizza1.retiraFatia();
+	
 	}
-
 }
