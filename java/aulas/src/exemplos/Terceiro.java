@@ -2,19 +2,13 @@ package exemplos;
 
 public class Terceiro extends Empregado {
 	
-	private double acrescimo = 0.1;
+	private double acrescimo ;
 
-	public Terceiro(String nome, int matricula, int horas, double valorHora) {
+	public Terceiro(String nome, int matricula, int horas, double valorHora, double acrescimo) {
 		super(nome, matricula, horas, valorHora);
-	
+		this.acrescimo = acrescimo;
 	}
 	
-	@Override
-	public double salario() {
-		
-		return (getHoras() * ((1 + acrescimo)*getValorHora()));
-	}
-
 	public double getAcrescimo() {
 		return acrescimo;
 	}
@@ -23,4 +17,9 @@ public class Terceiro extends Empregado {
 		this.acrescimo = acrescimo;
 	}
 	
+	@Override
+	public double salario() {
+		
+		return (getHoras() * ((1 + acrescimo)*getValorHora()));
+	}	
 }
