@@ -22,8 +22,7 @@ public class TesteErro {
 		{
 			System.out.println("Digite bem as Informações!");
 		}
-		
-		
+		*/
 		catch (java.lang.ArrayIndexOutOfBoundsException erro)//  trata o erro individual
 		{
 			System.out.println("Amigão, tu digitou um tamanho de indice errado!!!");
@@ -32,8 +31,8 @@ public class TesteErro {
 		{
 			System.out.println("Amigão, tu digitou uma letra não um numero!!!");
 		}
-		*/
-		finally
+		
+		finally// verificar devido funcionamento
 		{
 			System.out.println("Digite bem as Informações!");
 			System.out.println("Termino da verificação de erro");
@@ -44,3 +43,41 @@ public class TesteErro {
 	}
 	
 }
+
+
+
+
+
+
+public static int validacaoSexo(){
+	
+	Scanner scan = new Scanner(System.in);
+	int result = 0;
+	boolean aux1;
+	
+	do {
+		try {
+			System.out.print("Resposta: ");
+			result = scan.nextInt();
+	
+			
+			
+			if(result == 1 || result == 2 || result == 3){
+				aux1 = false;
+			}
+			else {
+				aux1 = true;
+				System.out.print("Operação Inválida, digite [1]-Masculino / [2]-Feminino / [3]-Outro.: ");
+			}
+		}catch(Exception erro) {
+			System.out.print("Ação inválida, Digite uma das opções [1], [2] ou [3]: ");
+			aux1 = false;
+		}
+	}			
+	while(aux1);
+		
+	return result;
+}
+
+
+

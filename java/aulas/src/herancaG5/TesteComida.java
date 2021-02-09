@@ -1,6 +1,6 @@
 package herancaG5;
 
-public class Main {
+public class TesteComida {
 
 	public static void main(String[] args) {
 
